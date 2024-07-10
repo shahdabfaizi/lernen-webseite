@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="minusgeld" onclick="minus()">-100</button>
+    <a id="count">0</a>
+    <a>kontostand</a>
+    <button id="plusgeld" onclick="plus()">+100</button>
+
+    <script>
+      var count = 0;
+
+      function countAnzeige() {
+        var element = document.getElementById("count");
+        element.innerHTML = count;
+      }
+
+      function minus() {
+        if (count <= -1000) {
+          alert("Limit erreicht");
+        } else {
+          count -= 100;
+
+          var element = document.getElementById("count");
+          element.innerHTML = count;
+        }
+      }
+
+      function plus() {
+        if (count >= 1000) {
+          alert("Limit erreicht");
+        } else {
+          count += 100;
+          var element = document.getElementById("count");
+          element.innerHTML = count;
+        }
+      }
+    </script>
+  </body>
+</html>

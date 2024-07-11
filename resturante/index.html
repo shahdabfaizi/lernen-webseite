@@ -62,25 +62,36 @@
         color: white;
       }
 
-      .oeffnung {
-        height: 30em;
-        width: 100%;
+      .oeffnung .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
         background-color: black;
-        margin-top: 60em;
-        color: white;
-      }
-
-      .oeffnung div {
-        height: 30em;
+        height: 70vh;
         width: 100%;
-        margin-top: 60em;
-        margin-top: 1em;
-        position: absolute;
       }
 
-      .oeffnung div h1 {
-        margin-top: 3em;
-        text-align: center;
+      .oeffnungszeiten {
+        flex: 1;
+        margin-top: 10em;
+        margin-left: 40em;
+        color: #fff;
+      }
+
+      .image {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 40em;
+        margin-top: 10em;
+      }
+
+      .image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
       }
       .oeffnung div p {
         display: flex;
@@ -124,6 +135,66 @@
         margin: 10px 0 0;
         color: white;
       }
+
+      .uberuns {
+        height: 100vh;
+        background-image: url(asian.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        font-size: 20px;
+      }
+
+      .uberuns section {
+        background-color: rgba(0, 0, 0, 0.795);
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .Kontakt {
+        height: 100vh;
+        width: 100%;
+        background-color: black;
+        color: #fff;
+      }
+      #Kontakt form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #Kontakt form input[type="text"],
+      #Kontakt form input[type="email"],
+      #Kontakt form input[type="tel"],
+      #Kontakt form textarea {
+        margin-bottom: 15px;
+        padding: 10px;
+        font-size: 1em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      #Kontakt form textarea {
+        resize: vertical;
+      }
+
+      #Kontakt form input[type="submit"] {
+        background-color: #ce0000;
+        color: #fff;
+        padding: 10px;
+        font-size: 1em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #Kontakt form input[type="submit"]:hover {
+        background-color: #770000;
+      }
     </style>
   </head>
   <body style="margin: 0px; background-color: darkgray">
@@ -141,40 +212,110 @@
       </section>
     </div>
     <section class="oeffnung" id="oeffnung">
-      <div>
-        <h1>Öffnungszeiten</h1>
-        <p>
-          <span class="left">Mo.</span>
-          <span class="right">17:00 Uhr</span>
-        </p>
-        <p>
-          <span>Di.</span>
-          <span>17:00 Uhr</span>
-        </p>
-        <p>
-          <span>Mi.</span>
-          <span>17:00 Uhr</span>
-        </p>
-        <p>
-          <span>Do.</span>
-          <span>17:00 Uhr</span>
-        </p>
-        <p>
-          <span>Fr.</span>
-          <span>17:00 Uhr</span>
-        </p>
-        <p>
-          <span>Sa.</span>
-          <span>17:00 Uhr</span>
-        </p>
-        <p>
-          <span>So.</span>
-          <span>Ruhe Tag</span>
-        </p>
+      <div class="container">
+        <div class="oeffnungszeiten">
+          <h1>Öffnungszeiten</h1>
+          <p>
+            <span class="left">Mo.</span>
+            <span class="right">17:00 Uhr</span>
+          </p>
+          <p>
+            <span>Di.</span>
+            <span>17:00 Uhr</span>
+          </p>
+          <p>
+            <span>Mi.</span>
+            <span>17:00 Uhr</span>
+          </p>
+          <p>
+            <span>Do.</span>
+            <span>17:00 Uhr</span>
+          </p>
+          <p>
+            <span>Fr.</span>
+            <span>17:00 Uhr</span>
+          </p>
+          <p>
+            <span>Sa.</span>
+            <span>17:00 Uhr</span>
+          </p>
+          <p>
+            <span>So.</span>
+            <span>Ruhe Tag</span>
+          </p>
+        </div>
+        <div class="image">
+          <img
+            style="height: 40vh; border-radius: 10px"
+            src="https://images.pexels.com/photos/4473276/pexels-photo-4473276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="img"
+          />
+        </div>
       </div>
     </section>
-    <section><h2>über uns</h2></section>
-    <section><h1>kontakt</h1></section>
+    <div class="uberuns">
+      <section>
+        <h2>Über uns</h2>
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <div style="max-width: 600px; margin-bottom: 20px">
+            <p>
+              Willkommen bei Bella Ciao Pizza! Wir sind ein kleines, aber
+              dynamisches Unternehmen aus Wolfsburg, das sich auf Webdesign und
+              Softwareentwicklung spezialisiert hat. Unser engagiertes Team von
+              Experten arbeitet leidenschaftlich daran, maßgeschneiderte
+              Lösungen für unsere Kunden zu entwickeln.
+            </p>
+            <p>
+              Wir sind nicht nur im digitalen Bereich tätig, sondern auch stolz
+              darauf, eine einzigartige Pizzeria mit asiatischer Kochkunstshow
+              zu betreiben. Unsere Pizzeria vereint das Beste aus zwei
+              kulinarischen Welten und bietet ein unvergessliches Erlebnis für
+              alle Sinne.
+            </p>
+            <p>
+              Stellen Sie sich vor, wie der Duft von frisch gebackener Pizza
+              durch die Luft strömt, während unsere talentierten Köche Ihnen
+              eine atemberaubende Show bieten. Mit beeindruckenden Fähigkeiten
+              und einem Lächeln auf den Lippen verwandeln sie die Zubereitung
+              Ihrer Mahlzeit in ein wahres Spektakel.
+            </p>
+            <p>
+              Unsere Leidenschaft für hochwertige Zutaten und kreative Rezepte
+              ist in jedem Bissen zu schmecken. Egal, ob Sie unsere klassischen
+              Pizzen oder unsere innovativen Fusion-Gerichte genießen, bei uns
+              erwartet Sie stets ein kulinarisches Highlight. Lassen Sie sich
+              von unserer einzigartigen Mischung aus traditioneller
+              italienischer Küche und fernöstlicher Kochkunst verzaubern.
+            </p>
+            <p>
+              Besuchen Sie uns und erleben Sie selbst, wie wir Ihre
+              Geschmacksknospen verwöhnen und gleichzeitig Ihre Augen mit
+              unserer beeindruckenden Show verzaubern. Wir freuen uns darauf,
+              Sie in unserer Pizzeria willkommen zu heißen und Ihnen ein
+              außergewöhnliches kulinarisches Erlebnis zu bieten!
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="Kontakt">
+      <div id="Kontakt">
+        <h2>Jetzt reseveiren</h2>
+        <form action="index.html" method="post">
+          <input type="text" name="name" placeholder="Vorname" required />
+          <input type="text" name="last_name" placeholder="Nachname" required />
+          <input type="tel" name="tel" placeholder="Telefonnummer" required />
+          <input type="email" name="email" placeholder="E-Mail" required />
+          <textarea
+            name="message"
+            placeholder="Nachricht"
+            rows="5"
+            required
+          ></textarea>
+          <input type="submit" value="Senden" />
+        </form>
+      </div>
+    </section>
     <footer>
       <div name="rechtliche">
         <a href="#">Impressum</a>

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="java.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Taschenrechner</title>
   </head>
   <body>
     <!-- Anzeige -->
@@ -17,64 +17,32 @@
     <div id="zahlen">
       <table>
         <tr>
-          <td>
-            <button onclick="rufNummer(1)">1</button>
-          </td>
-          <td>
-            <button onclick="rufNummer(2)">2</button>
-          </td>
-          <td>
-            <button onclick="rufNummer(3)">3</button>
-          </td>
+          <td><button onclick="rufNummer(1)">1</button></td>
+          <td><button onclick="rufNummer(2)">2</button></td>
+          <td><button onclick="rufNummer(3)">3</button></td>
+          <td><button onclick="add()">+</button></td>
         </tr>
         <tr>
-          <td>
-            <button onclick="rufNummer(4)">4</button>
-          </td>
-          <td>
-            <button onclick="rufNummer(5)">5</button>
-          </td>
-          <td>
-            <button onclick="rufNummer(6)">6</button>
-          </td>
+          <td><button onclick="rufNummer(4)">4</button></td>
+          <td><button onclick="rufNummer(5)">5</button></td>
+          <td><button onclick="rufNummer(6)">6</button></td>
+          <td><button onclick="sub()">-</button></td>
         </tr>
         <tr>
-          <td>
-            <button onclick="rufNummer(7)">7</button>
-          </td>
-          <td>
-            <button onclick="rufNummer(8)">8</button>
-          </td>
-          <td>
-            <button onclick="rufNummer(9)">9</button>
-          </td>
+          <td><button onclick="rufNummer(7)">7</button></td>
+          <td><button onclick="rufNummer(8)">8</button></td>
+          <td><button onclick="rufNummer(9)">9</button></td>
+          <td><button onclick="multi()">*</button></td>
+        </tr>
+        <tr>
+          <td><button onclick="rufNummer(0)">0</button></td>
+          <td><button onclick="divi()">/</button></td>
+          <td><button onclick="summe()">=</button></td>
+          <td><button onclick="clear()">CE</button></td>
         </tr>
       </table>
     </div>
-    <div id="grundrechenarten">
-      <table>
-        <tr>
-          <td>
-            <button onclick="add()">+</button>
-          </td>
-          <td>
-            <button>-</button>
-          </td>
-          <td>
-            <button>*</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button>/</button>
-          </td>
-          <td>
-            <button>=</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <!-- verlauf -->
+    <!-- Verlauf -->
     <div id="verlaufanzeige">
       <p></p>
     </div>

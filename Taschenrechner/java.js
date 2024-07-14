@@ -1,6 +1,7 @@
-let currentInput = "0";
-let currentOperation = null;
-let previousInput = "0";
+let currentInput = "";
+let previousInput = "";
+let operator = null;
+let liste = "";
 
 function rufNummer(number) {
   currentInput += number;
@@ -8,26 +9,104 @@ function rufNummer(number) {
 }
 
 function add() {
-  previousInput = currentInput;
-  currentInputt = 0;
+  performOperator();
+  operator = "+";
+  currentInput = "";
   updateDisplay();
   updatePreviousInput();
 }
 
-function sub() {}
+function sub() {
+  performOperator();
+  operator = "-";
+  currentInput = "";
+  updateDisplay();
+  updatePreviousInput();
+}
 
-function multi() {}
+function multi() {
+  performOperator();
+  operator = "*";
+  currentInput = "";
+  updateDisplay();
+  updatePreviousInput();
+}
 
-function divi() {}
+function divi() {
+  performOperator();
+  operator = "/";
+  currentInput = "";
+  updateDisplay();
+  updatePreviousInput();
+}
 
-function summe() {}
+function summe() {
+  performOperator();
+  operator = "=";
+  currentInput = "";
+  updateDisplay();
+  updatePreviousInput();
+  updateVerlauf();
+}
 
-function clear() {}
+function clear() {
+  currentInput = "";
+  previousInput = "";
+  operator = null;
+  resetDisplay();
+}
+
+function performOperator() {
+  if (previousInput === "") {
+    previousInput = currentInput;
+    currentInput = "";
+    return;
+  }
+
+  let result = 0;
+  const prev = parseFloat(previousInput);
+  const current = parseFloat(currentInput);
+
+  if (operator === "+") {
+    result = prev + current;
+  } else if (operator === "-") {
+    result = prev - current;
+  } else if (operator === "*") {
+    result = prev * current;
+  } else if (operator === "/") {
+    result = prev / current;
+  }
+
+  const listString =
+    "<p>" +
+    previousInput +
+    " " +
+    operator +
+    " " +
+    currentInput +
+    " = " +
+    result +
+    "</p>";
+  liste = listString + liste;
+
+  previousInput = result.toString();
+  currentInput = "";
+}
 
 function updateDisplay() {
-  document.getElementById("display").innerHTML = currentInput;
+  document.getElementById("display").innerHTML =
+    currentInput || previousInput || "0";
 }
 
 function updatePreviousInput() {
-  document.getElementById("zwischenAnzeige").innerHTML = previousInput + "+";
+  document.getElementById("zwischenAnzeige").innerHTML = previousInput || "0";
+}
+
+function updateVerlauf() {
+  document.getElementById("verlaufanzeige").innerHTML = liste;
+}
+
+function resetDisplay() {
+  document.getElementById("display").innerHTML = "0";
+  document.getElementById("zwischenAnzeige").innerHTML = "0";
 }

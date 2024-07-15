@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // array erstellen und in der console ausgeben.
+      const liste = [8, 9, 36, 50];
+      console.log(liste);
+
+      // array wert füllen & wert azsgeben
+      liste.push(6);
+      console.log(liste.length);
+      console.log(liste);
+
+      const letzteElement = liste.pop();
+      console.log(letzteElement);
+      console.log(liste);
+
+      console.log(liste[1]);
+      console.log(liste[liste.length - 1]);
+
+      // array länge darstellen & splicen (löschen & einfügen)
+
+      liste.splice(1, 1);
+      console.log(liste);
+
+      liste.splice(1, 0, 1);
+      console.log(liste);
+
+      // ForEach ist "Sie wird verwendet, um eine Funktion für jedes Element eines Arrays aufzurufen."
+      // kurzgesagt ruft die funktion alle array was eingetragen ist.
+      liste.forEach(function (list) {
+        console.log(list);
+      });
+
+      // filter kurzgesagt die elemente werde ausgefilter und ausgegeben
+
+      const filtereliste = liste.filter((elemente) => {
+        return elemente < 36;
+      });
+
+      console.log(filtereliste);
+    </script>
+    <!-- test ohne hilfe und videos -->
+    <script>
+      // eigene Test
+
+      const list = [60, 50, 40, 30, 20, 10, 0];
+      console.log(list);
+
+      // zahl 70 hinzufügen
+
+      list.splice(0, 0, 70);
+      console.log(list);
+
+      // zahl 50 rausnehmen
+
+      list.splice(2, 2);
+      console.log(list);
+
+      //  push ist wenn die zahl hinzugefügt wird
+
+      list.push(80); // kann die reinfolge verändert werden?
+      console.log(list);
+    </script>
+  </body>
+</html>

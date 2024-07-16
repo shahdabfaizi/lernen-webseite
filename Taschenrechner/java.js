@@ -49,7 +49,7 @@ function summe() {
   updateVerlauf();
 }
 
-function clear() {
+function cleardisplay() {
   currentInput = "";
   previousInput = "";
   operator = null;
@@ -57,12 +57,15 @@ function clear() {
 }
 
 function performOperator() {
+  if (operator === "=") {
+    return;
+  }
   if (previousInput === "") {
     previousInput = currentInput;
     currentInput = "";
     return;
   }
-
+  // parseInt für ganz zahl.
   let result = 0;
   const prev = parseFloat(previousInput);
   const current = parseFloat(currentInput);
@@ -77,6 +80,8 @@ function performOperator() {
     result = prev / current;
   }
 
+  result = result.toFixed(4);
+  //result = Math.round(result);
   const listString =
     "<p>" +
     previousInput +

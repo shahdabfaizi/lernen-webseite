@@ -80,7 +80,7 @@ function performOperator() {
     result = prev / current;
   }
 
-  result = result.toFixed(4);
+  result = result.toFixed(2);
   //result = Math.round(result);
   const listString =
     "<p>" +

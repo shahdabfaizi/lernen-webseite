@@ -94,8 +94,13 @@ function performOperator() {
 }
 
 function updateDisplay() {
-  document.getElementById("display").innerHTML =
-    currentInput || previousInput || "0";
+  if (currentInput) {
+    document.getElementById("display").innerHTML = currentInput;
+  } else if (previousInput) {
+    document.getElementById("display").innerHTML = previousInput;
+  } else {
+    document.getElementById("display").innerHTML = "0";
+  }
 }
 
 function updatePreviousInput() {

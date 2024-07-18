@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aufgabe nummer 1</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <p>Wert Einfügen:</p>
+        <input type="number" name="einfuegen" id="einfuegen" /><button
+          onclick="einfuegen()"
+        >
+          Einfügen
+        </button>
+      </div>
+      <div>
+        <p>Wert durch ID löschen:</p>
+        <input type="number" name="Idloeschen" id="idLoeschen" /><button
+          onclick="idLoeschen()"
+        >
+          Löschen
+        </button>
+      </div>
+      <div>
+        <p>Wert durch name löschen:</p>
+        <input
+          type="number"
+          name="contentLoeschen"
+          id="contentLoeschen"
+        /><button onclick="conLoeschen()">Löschen</button>
+      </div>
+      <div>
+        <button onclick="anzeigen()">Anzeigen</button>
+        <button onclick="muti()">Multiplizieren</button>
+        <button onclick="summe()">Summe</button>
+      </div>
+    </div>
+
+    <script>
+      // inhalt hinzufügen
+      let liste = [8, 9, 36, 50];
+      console.log(liste);
+
+      function einfuegen() {
+        const value = document.getElementById("einfuegen").value;
+        liste.push(value);
+      }
+
+      // function einfuegen() {
+      //   const value = document.getElementById("einfuegen").value;
+      //  liste.splice(1, 0, value);
+      //  console.log(liste);
+      //}
+
+      // inhalt Position löschen
+      function idLoeschen() {
+        const position = document.getElementById("idLoeschen").value;
+        if (position < liste.length) {
+          liste.splice(position, 1);
+        } else {
+          console.log(
+            "Die Position muss Kleiner als " + liste.length + " sein"
+          );
+        }
+      }
+      // inhalt Löschen
+      function conLoeschen() {
+        const content = Number(
+          document.getElementById("contentLoeschen").value
+        );
+        const neuListe = liste.filter((element) => {
+          return element !== content;
+        });
+
+        liste = neuListe;
+      }
+      // Anzeigen
+
+      function anzeigen() {
+        console.log(liste);
+        liste.forEach((element) => {
+          console.log(element);
+        });
+      }
+      // Multi
+      function muti() {
+        const neuListe = liste.map((element) => {
+          return element * 2;
+        });
+
+        liste = neuListe;
+      }
+      // zusammenrechnung (Summe)
+
+      function summe() {
+        const sum = liste.reduce((previousValue, currentValue) => {
+          return previousValue + currentValue;
+        });
+
+        console.log(sum);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schüler eintragen</title>
+  </head>
+  <body>
+    <h1>Schüler eintragen</h1>
+    Vorname: <input type="text" name="name" id="firstname" /> Nachname:
+    <input type="text" name="lastname" id="lastname" /> Alter:
+    <input type="number" name="age" id="age" /> Klasse:
+    <label>
+      <select id="classe" name="classe">
+        <option value="1.">1.</option>
+        <option value="2.">2.</option>
+        <option value="3.">3.</option>
+        <option value="4.">4.</option>
+        <option value="5.">5.</option>
+      </select>
+    </label>
+    Englisch: <input type="text" name="englisch" id="englisch" /> Deutsch:
+    <input type="text" name="deutsch" id="deutsch" /> Mathe:
+    <input type="text" name="mathe" id="mathe" />
+    <input type="button" value="eintragen" onclick="eintrage()" />
+    <input type="button" value="anzeigen" onclick="anzeigen()" />
+
+    <script>
+      const schueler = [];
+
+      function eintrage() {
+        const firstName = document.getElementById("firstname").value;
+        const lastName = document.getElementById("lastname").value;
+        const age = document.getElementById("age").value;
+        const classe = document.getElementById("classe").value;
+        const englisch = document.getElementById("englisch").value;
+        const deutsch = document.getElementById("deutsch").value;
+        const mathe = document.getElementById("mathe").value;
+
+        const schuelerObj = {
+          name: firstName,
+          lastName: lastName,
+          age: age,
+          classe: classe,
+          score: {
+            englisch: englisch,
+            deutsch: deutsch,
+            mathe: mathe,
+          },
+        };
+        schueler.push(schuelerObj);
+      }
+
+      function anzeigen() {
+        console.log(schueler);
+        schueler.forEach((element) => {
+          console.log(element);
+        });
+      }
+    </script>
+  </body>
+</html>

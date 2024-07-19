@@ -107,6 +107,12 @@
         `;
         document.getElementById("wrapper").innerHTML = htmlString;
       }
+
+      // löschung von Element
+
+      function delet(id) {
+        document.getElementById(id).remove();
+      }
     </script>
   </head>
 
@@ -132,5 +138,8 @@
     <button onclick="addNewByString()">Add By String</button>
     <button onclick="addNew()">Add New</button>
     <div id="wrapper"></div>
+
+    <div id="1">Hallo Welt!</div>
+    <button onclick="delet('1')">Löschen</button>
   </body>
 </html>

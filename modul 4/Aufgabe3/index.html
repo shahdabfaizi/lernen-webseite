@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!-- saved from url=(0146)https://files.mspotcdn.de/schools%2FMVdSxpebVbCje6Sd8KoN%2Ffiles%2FVorlage_1692894057485.html?alt=media&token=8dc9113a-3c43-4e66-a789-0df87de4cf57 -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 0px 24px;
+        border-radius: 10px;
+        padding: 1rem;
+        width: fit-content;
+        display: grid;
+        grid-column: auto;
+        gap: 1rem;
+      }
+
+      .card-header {
+        font-size: 2rem;
+      }
+
+      .card-body > img {
+        max-width: 15rem;
+      }
+    </style>
+    <script>
+      const randomImages = [
+        "https://images.pexels.com/photos/23496864/pexels-photo-23496864/free-photo-of-menschen-arbeiten-manner-sitzung.jpeg",
+        "https://images.pexels.com/photos/23496955/pexels-photo-23496955/free-photo-of-frau-smartphone-laptop-arbeiten.jpeg",
+        "https://images.pexels.com/photos/23496708/pexels-photo-23496708/free-photo-of-buro-arbeiten-manner-frauen.jpeg",
+        "https://images.pexels.com/photos/22719284/pexels-photo-22719284/free-photo-of-schwarz-und-weiss-schwarzweiss-frau-manner.jpeg",
+      ];
+
+      function like(url) {
+        alert("You like " + url);
+      }
+
+      function dislike(url) {
+        alert("You dislike " + url);
+      }
+
+      function addNew() {
+        const randomImage =
+          randomImages[Math.floor(Math.random() * randomImages.length)];
+        // TODO 1: Elemente erstellen (Card, Header, Body, Footer, Like, Dislike)
+        //TODO 2: Klassen setzen (card, card-header, card-body)
+        const html = document.createElement("div");
+        html.classList.add("card");
+
+        const header = document.createElement("div");
+        const title = document.createTextNode("Title of a card");
+        header.appendChild(title);
+        header.classList.add("card-header");
+
+        const body = document.createElement("div");
+        body.classList.add("card-body");
+
+        const footer = document.createElement("div");
+        footer.classList.add("card-footer");
+
+        const likeButton = document.createElement("button");
+        likeButton.setAttribute("onclick", `like('${randomImage}')`);
+        const likeText = document.createTextNode("Like");
+        likeButton.appendChild(likeText);
+
+        const disLikeButton = document.createElement("button");
+        disLikeButton.setAttribute("onclick", `dislike('${randomImage}')`);
+        const disLikeText = document.createTextNode("Dislike");
+        disLikeButton.appendChild(disLikeText);
+
+        const img = document.createElement("img");
+        img.src = randomImage;
+
+        footer.appendChild(likeButton);
+        footer.appendChild(disLikeButton);
+
+        body.appendChild(img);
+
+        html.appendChild(header);
+        html.appendChild(body);
+        html.appendChild(footer);
+
+        document.getElementById("wrapper").prepend(html);
+        //TODO 3: Image setzen
+        // TODO 3: Texte erzeugen (Title of a card, Like, Dislike)
+        // TODO 4: Texte anfügen an Elemente
+        // TODO 5: Elemente aneinander fügen
+        // TODO 6: Wrapper Elemente append Child
+      }
+
+      function addNewByString() {
+        // TODO 1: Random Image
+        const randomImage =
+          randomImages[Math.floor(Math.random() * randomImages.length)];
+        // TODO 2: String setzen (mit ${}-Notation)
+        const htmlString = `
+          <div class="card">
+            <div class="card-header">Title of a card</div>
+              <div class="card-body"><img src="${randomImage}" /></div>
+              <div class="card-footer">
+                <button onclick="like(${randomImage})">Like</button>
+                <button onclick="dislike(${randomImage})">Dislike</button>
+              </div>
+          </div>
+        `;
+        document.getElementById("wrapper").innerHTML = htmlString;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="card">
+      <div class="card-header">Title of a card</div>
+      <div class="card-body">
+        <img src="./index_files/box-1331470_960_720.jpg" />
+      </div>
+      <div class="card-footer">
+        <button
+          onclick="like(https://cdn.pixabay.com/photo/2016/04/15/17/26/box-1331470_960_720.jpg;)"
+        >
+          Like
+        </button>
+        <button
+          onclick="dislike(https://cdn.pixabay.com/photo/2016/04/15/17/26/box-1331470_960_720.jpg;)"
+        >
+          Dislike
+        </button>
+      </div>
+    </div>
+    <button onclick="addNewByString()">Add By String</button>
+    <button onclick="addNew()">Add New</button>
+    <div id="wrapper"></div>
+  </body>
+</html>

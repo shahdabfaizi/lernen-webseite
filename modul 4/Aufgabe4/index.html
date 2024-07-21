@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", load);
+
+      let names = [];
+
+      function save() {
+        localStorage.setItem("names", JSON.stringify(names));
+        console.log(JSON.stringify(names));
+      }
+
+      function addNameFunction() {
+        names.push(document.getElementById("addName").value);
+        console.log(names);
+      }
+
+      function load() {
+        console.log(JSON.parse(localStorage.getItem("names")));
+      }
+
+      function delName() {
+        const name = document.getElementById("delName").value;
+        names = names.filter((name) => {
+          return name !== nameInput;
+        });
+      }
+
+      function delAllNames() {
+        names = [];
+        localStorage.removeItem("names");
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" name="text" id="addName" />
+    <button onclick="addNameFunction()">Add</button>
+
+    <input type="text" name="delName" id="delName" />
+    <button onclick="delName()">Entfernen</button>
+
+    <button onclick="load()">Laden</button>
+    <button onclick="save()">Speichern</button>
+    <button onclick="delAllNames()">Alle löschen</button>
+  </body>
+</html>

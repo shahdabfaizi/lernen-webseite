@@ -1,0 +1,71 @@
+<!--Selbst versuche -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abschluss Aufgabe</title>
+    <style>
+      .body {
+        height: 30vh;
+        width: 100%;
+        background-color: aqua;
+      }
+
+      .p {
+        text-align: center;
+        padding-top: 10vh;
+      }
+    </style>
+    <script>
+      const vinzenz = {
+        name: "Vinzenz",
+        lastName: "Müller",
+        age: 28,
+      };
+
+      const sohrab = {
+        name: "Sohrab",
+        lastName: "Faizi",
+        age: 27,
+      };
+
+      const shabnam = {
+        name: "Shabnam",
+        lastName: "Faizi",
+        age: 20,
+      };
+
+      const schluelerRandom = [vinzenz, sohrab, shabnam];
+      console.log(schluelerRandom);
+
+      function add() {
+        const randomSchueler =
+          schluelerRandom[Math.floor(Math.random() * schluelerRandom.length)];
+
+        console.log(randomSchueler);
+
+        const body = document.createElement("div");
+        body.classList.add("body");
+
+        const text = document.createElement("p");
+        text.classList.add("p");
+
+        const textNode = document.createTextNode(randomSchueler);
+        text.appendChild(textNode);
+
+        body.appendChild(text);
+
+        console.log(body);
+        console.log(text);
+
+        document.getElementById("wrapper").prepend(body);
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="add()">Schüler anzeigen</button>
+    <div id="wrapper"></div>
+  </body>
+</html>

@@ -13,9 +13,15 @@
       }
     </style>
     <script>
+      let schueler = [];
       const firstName = ["Sohrab", "Shabnam", "Vinzenz", "Nanja"];
       const lastName = ["Müller", "Faizi", "Mayer", "Koch"];
       const age = [20, 23, 28, 26, 27];
+
+      function saveToLocalStoragte() {
+        localStorage.setItem("schueler", JSON.stringify(schueler));
+        console.log(JSON.stringify(schueler));
+      }
 
       function add() {
         const randomFirstName =
@@ -47,6 +53,16 @@
         body.appendChild(loeschButton);
 
         document.getElementById("wrapper").prepend(body);
+
+        const schuelerIN = {
+          firstName: randomFirstName,
+          lastName: randomLastName,
+          age: randomAge,
+        };
+
+        schueler.push(schuelerIN);
+
+        saveToLocalStoragte();
       }
     </script>
   </head>

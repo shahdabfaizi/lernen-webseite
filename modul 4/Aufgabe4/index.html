@@ -1,0 +1,57 @@
+<!--Aufgabe-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abschluss Aufgabe</title>
+    <style>
+      .body {
+        height: 150px;
+        width: 100%;
+        background-color: aqua;
+      }
+    </style>
+    <script>
+      const firstName = ["Sohrab", "Shabnam", "Vinzenz", "Nanja"];
+      const lastName = ["Müller", "Faizi", "Mayer", "Koch"];
+      const age = [20, 23, 28, 26, 27];
+
+      function add() {
+        const randomFirstName =
+          firstName[Math.floor(Math.random() * firstName.length)];
+        const randomLastName =
+          lastName[Math.floor(Math.random() * lastName.length)];
+        const randomAge = age[Math.floor(Math.random() * age.length)];
+
+        const body = document.createElement("div");
+        body.classList.add("body");
+        const randomFirstNameText = document.createTextNode(randomFirstName);
+        const randomLastNameText = document.createTextNode(randomLastName);
+        const randomAgeText = document.createTextNode(randomAge);
+
+        const randomFirstNamePragraf = document.createElement("p");
+        randomFirstNamePragraf.appendChild(randomFirstNameText);
+        const randomLastNamePragraf = document.createElement("p");
+        randomLastNamePragraf.appendChild(randomLastNameText);
+        const randomAgePragraf = document.createElement("p");
+        randomAgePragraf.appendChild(randomAgeText);
+
+        const loeschButton = document.createElement("button");
+        const loeschButtonText = document.createTextNode("Löschen");
+        loeschButton.appendChild(loeschButtonText);
+
+        body.appendChild(randomFirstNamePragraf);
+        body.appendChild(randomLastNamePragraf);
+        body.appendChild(randomAgePragraf);
+        body.appendChild(loeschButton);
+
+        document.getElementById("wrapper").prepend(body);
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="add()">Schüler anzeigen</button>
+    <div id="wrapper"></div>
+  </body>
+</html>

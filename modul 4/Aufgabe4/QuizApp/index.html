@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizApp</title>
+    <style>
+      .richtig {
+        background-color: green;
+      }
+      .falsch {
+        background-color: red;
+      }
+      .card {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+    <script>
+      // Eine QuizApp die zwei Fragen beinhaltet und 4 Antwortmöglichkeiten
+      const deutschland = ["Hannover", "München", "Berlin", "Hamburg"];
+      const iran = ["Shiraz", "Tehran", "Isfahan", "Iazd"];
+
+      const randomQuiz = [
+        {
+          frage: "Was ist die Hauptstadt von Deutschland?",
+          options: deutschland,
+          richtig: "Berlin",
+        },
+        {
+          frage: "Was ist die Hauptstadt von Iran?",
+          options: iran,
+          richtig: "Tehran",
+        },
+      ];
+
+      function addNewByString() {
+        const randomQuizItem =
+          randomQuiz[Math.floor(Math.random() * randomQuiz.length)];
+
+        const htmlString = `
+        <div class="card">
+          <div class="card-header">QuizShow</div>
+          <div class="card-body"><p>${randomQuizItem.frage}</p></div>
+          <div class="card-footer">
+            ${randomQuizItem.options
+              .map(
+                (option) =>
+                  `<button onclick="checkAnswer('${option}', '${randomQuizItem.richtig}')">${option}</button>`
+              )
+              .join("")}
+          </div>
+        </div>
+      `;
+        document.getElementById("wrapper").innerHTML = htmlString;
+      }
+
+      function checkAnswer(falsch, richtig) {
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+          if (button.innerText === richtig) {
+            button.classList.add("richtig");
+          } else if (button.innerText === falsch) {
+            button.classList.add("falsch");
+          }
+        });
+
+        console.log(` antwort-falsch: ${falsch}, antwort-richtig: ${richtig}`);
+      }
+    </script>
+    <button onclick="addNewByString()">Start</button>
+  </body>
+</html>

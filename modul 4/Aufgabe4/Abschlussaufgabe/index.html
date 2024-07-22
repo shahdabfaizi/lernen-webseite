@@ -13,6 +13,8 @@
       }
     </style>
     <script>
+      document.addEventListener("DOMContentLoaded", initSchueler);
+
       let schueler = [];
       const firstName = ["Sohrab", "Shabnam", "Vinzenz", "Nanja"];
       const lastName = ["Müller", "Faizi", "Mayer", "Koch"];
@@ -23,6 +25,30 @@
         console.log(JSON.stringify(schueler));
       }
 
+      function load() {
+        const schuelerVonStrorage = JSON.parse(
+          localStorage.getItem("schueler")
+        );
+        if (schuelerVonStrorage !== null) {
+          schueler = schuelerVonStrorage;
+        }
+      }
+
+      function loescheSchuler(id) {
+        document.getElementById(id).remove();
+        schueler = schueler.filter((schueler) => {
+          return schueler.id !== id;
+        });
+        saveToLocalStoragte();
+      }
+
+      function initSchueler() {
+        load();
+        schueler.forEach((schueler) => {
+          addSchueler(schueler);
+        });
+      }
+
       function add() {
         const randomFirstName =
           firstName[Math.floor(Math.random() * firstName.length)];
@@ -30,11 +56,31 @@
           lastName[Math.floor(Math.random() * lastName.length)];
         const randomAge = age[Math.floor(Math.random() * age.length)];
 
+        const id = Math.random();
+
+        const schuelerIN = {
+          id: id,
+          firstName: randomFirstName,
+          lastName: randomLastName,
+          age: randomAge,
+        };
+
+        schueler.push(schuelerIN);
+
+        saveToLocalStoragte();
+
+        addSchueler(schuelerIN);
+      }
+
+      function addSchueler(schuelerIN) {
         const body = document.createElement("div");
         body.classList.add("body");
-        const randomFirstNameText = document.createTextNode(randomFirstName);
-        const randomLastNameText = document.createTextNode(randomLastName);
-        const randomAgeText = document.createTextNode(randomAge);
+        body.id = schuelerIN.id;
+        const randomFirstNameText = document.createTextNode(
+          schuelerIN.firstName
+        );
+        const randomLastNameText = document.createTextNode(schuelerIN.lastName);
+        const randomAgeText = document.createTextNode(schuelerIN.age);
 
         const randomFirstNamePragraf = document.createElement("p");
         randomFirstNamePragraf.appendChild(randomFirstNameText);
@@ -46,6 +92,10 @@
         const loeschButton = document.createElement("button");
         const loeschButtonText = document.createTextNode("Löschen");
         loeschButton.appendChild(loeschButtonText);
+        loeschButton.setAttribute(
+          "onclick",
+          `loescheSchuler(${schuelerIN.id})`
+        );
 
         body.appendChild(randomFirstNamePragraf);
         body.appendChild(randomLastNamePragraf);
@@ -53,16 +103,6 @@
         body.appendChild(loeschButton);
 
         document.getElementById("wrapper").prepend(body);
-
-        const schuelerIN = {
-          firstName: randomFirstName,
-          lastName: randomLastName,
-          age: randomAge,
-        };
-
-        schueler.push(schuelerIN);
-
-        saveToLocalStoragte();
       }
     </script>
   </head>

@@ -45,6 +45,7 @@
         cursor: pointer;
         color: #5a5a5a;
         font-size: 2vh;
+        position: relative;
       }
 
       .note:hover {
@@ -67,7 +68,7 @@
       }
 
       .saveButton {
-        width: 18%;
+        width: 15%;
         height: 5.5vh;
         background-color: #bf8f73;
         color: white;
@@ -91,6 +92,27 @@
         background-color: #e2e2e2;
         color: #222222;
       }
+
+      .trash {
+        width: 5.5vh;
+        height: 5.5vh;
+        background-image: url("icons/trash-close.png");
+        background-size: cover;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 2.1vh;
+        left: 95%;
+      }
+
+      .trash:hover {
+        background-image: url("icons/trash-open.png");
+        background-size: cover;
+      }
+
+      .header {
+        width: 100%;
+      }
     </style>
   </head>
   <body style="margin: 0">
@@ -108,7 +130,14 @@
             name="notizenUeberschrift"
             id="ueberschrift"
             placeholder="Überschrift eingeben...."
-          /><button onclick="addNewNote()" class="saveButton">Speichern</button>
+          />
+          <button onclick="addNewNote()" class="saveButton">Speichern</button>
+          <button
+            id="deleteButton"
+            style="background-color: rgb(167, 46, 46)"
+            onclick="loeschen(); event.stopPropagation();"
+            class="trash"
+          ></button>
         </div>
         <div class="card-body">
           <textarea
@@ -121,28 +150,30 @@
     </div>
 
     <script>
-      let notizenUeberschrift = [];
-      let notizen = [];
+      let currentNoteId = null;
 
       function addNewNote() {
         const ueber = document.getElementById("ueberschrift").value;
         const notiz = document.getElementById("notiz").value;
-        const id = Math.random();
 
         if (ueber && notiz) {
-          notizenUeberschrift.push(ueber);
-          notizen.push(notiz);
+          if (currentNoteId === null) {
+            const id = Math.random().toString(36).substr(2, 9);
+            const speichern = {
+              id: id,
+              notizenUeberschrift: ueber,
+              notiz: notiz,
+            };
+
+            saveToLocalStorage(speichern);
+          } else {
+            updateNoteInLocalStorage(currentNoteId, ueber, notiz);
+          }
 
           document.getElementById("ueberschrift").value = "";
           document.getElementById("notiz").value = "";
+          currentNoteId = null;
 
-          const speichern = {
-            id: id,
-            notizenUeberschrift: ueber,
-            notiz: notiz,
-          };
-
-          saveToLocalStorage(speichern);
           displayNotes();
         } else {
           alert(
@@ -158,6 +189,40 @@
         localStorage.setItem("notizen", JSON.stringify(gespeicherteNotizen));
       }
 
+      function updateNoteInLocalStorage(id, ueber, notiz) {
+        let gespeicherteNotizen =
+          JSON.parse(localStorage.getItem("notizen")) || [];
+        gespeicherteNotizen = gespeicherteNotizen.map((note) => {
+          if (note.id === id) {
+            note.notizenUeberschrift = ueber;
+            note.notiz = notiz;
+          }
+          return note;
+        });
+        localStorage.setItem("notizen", JSON.stringify(gespeicherteNotizen));
+      }
+
+      function loeschen() {
+        if (currentNoteId !== null) {
+          loescheNoteFromLocalStorage(currentNoteId);
+          document.getElementById("ueberschrift").value = "";
+          document.getElementById("notiz").value = "";
+          currentNoteId = null;
+          displayNotes();
+        } else {
+          alert("Keine Notiz zum Löschen ausgewählt.");
+        }
+      }
+
+      function loescheNoteFromLocalStorage(id) {
+        let gespeicherteNotizen =
+          JSON.parse(localStorage.getItem("notizen")) || [];
+        gespeicherteNotizen = gespeicherteNotizen.filter(
+          (note) => note.id !== id
+        );
+        localStorage.setItem("notizen", JSON.stringify(gespeicherteNotizen));
+      }
+
       function displayNotes() {
         const notesList = document.getElementById("notesList");
         notesList.innerHTML = "";
@@ -167,31 +232,38 @@
 
         gespeicherteNotizen.forEach((note) => {
           const noteDiv = document.createElement("div");
-          noteDiv.id = note.id;
+          noteDiv.classList.add("note");
+          noteDiv.onclick = (event) => {
+            event.stopPropagation();
+            editNote(note.id);
+          };
 
           noteDiv.innerHTML = `
-            <button class="note"><p>Überschrift: ${note.notizenUeberschrift}</p>
+            <p>Überschrift: ${note.notizenUeberschrift}</p>
             <p>Notiz: ${note.notiz}</p>
-            </button>
           `;
 
           notesList.appendChild(noteDiv);
         });
       }
 
-      function deleteNote(id) {
+      function editNote(id) {
         let gespeicherteNotizen =
           JSON.parse(localStorage.getItem("notizen")) || [];
-        gespeicherteNotizen = gespeicherteNotizen.filter(
-          (note) => note.id !== id
-        );
-        localStorage.setItem("notizen", JSON.stringify(gespeicherteNotizen));
-        displayNotes();
+        const noteToEdit = gespeicherteNotizen.find((note) => note.id === id);
+
+        if (noteToEdit) {
+          document.getElementById("ueberschrift").value =
+            noteToEdit.notizenUeberschrift;
+          document.getElementById("notiz").value = noteToEdit.notiz;
+          currentNoteId = id;
+        }
       }
 
       function createNewNote() {
         document.getElementById("ueberschrift").value = "";
         document.getElementById("notiz").value = "";
+        currentNoteId = null;
       }
 
       document.addEventListener("DOMContentLoaded", () => {

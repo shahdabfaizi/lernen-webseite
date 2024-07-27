@@ -113,6 +113,16 @@
       .header {
         width: 100%;
       }
+
+      .datum {
+        font-size: 1vh;
+        margin-left: 79%;
+      }
+
+      .usbsr {
+        margin-left: 5%;
+        padding-top: 20px;
+      }
     </style>
   </head>
   <body style="margin: 0">
@@ -242,8 +252,8 @@
           };
 
           noteDiv.innerHTML = `
-            <p>Überschrift: ${note.notizenUeberschrift}</p>
-            <p>Notiz: ${note.notiz}</p>
+            <p class="usbsr">Überschrift: ${note.notizenUeberschrift}</p>
+            <p class="usbsr">Notiz: ${note.notiz}</p>
             <div class="datum">Zuletzt aktualisiert: ${new Date(
               note.lastUpdated
             ).toLocaleString()}</div>

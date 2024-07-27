@@ -155,6 +155,7 @@
       function addNewNote() {
         const ueber = document.getElementById("ueberschrift").value;
         const notiz = document.getElementById("notiz").value;
+        const lastUpdated = new Date().toISOString();
 
         if (ueber && notiz) {
           if (currentNoteId === null) {
@@ -163,11 +164,12 @@
               id: id,
               notizenUeberschrift: ueber,
               notiz: notiz,
+              lastUpdated: lastUpdated,
             };
 
             saveToLocalStorage(speichern);
           } else {
-            updateNoteInLocalStorage(currentNoteId, ueber, notiz);
+            updateNoteInLocalStorage(currentNoteId, ueber, notiz, lastUpdated);
           }
 
           document.getElementById("ueberschrift").value = "";
@@ -189,13 +191,14 @@
         localStorage.setItem("notizen", JSON.stringify(gespeicherteNotizen));
       }
 
-      function updateNoteInLocalStorage(id, ueber, notiz) {
+      function updateNoteInLocalStorage(id, ueber, notiz, lastUpdated) {
         let gespeicherteNotizen =
           JSON.parse(localStorage.getItem("notizen")) || [];
         gespeicherteNotizen = gespeicherteNotizen.map((note) => {
           if (note.id === id) {
             note.notizenUeberschrift = ueber;
             note.notiz = notiz;
+            note.lastUpdated = lastUpdated;
           }
           return note;
         });
@@ -241,6 +244,9 @@
           noteDiv.innerHTML = `
             <p>Überschrift: ${note.notizenUeberschrift}</p>
             <p>Notiz: ${note.notiz}</p>
+            <div class="datum">Zuletzt aktualisiert: ${new Date(
+              note.lastUpdated
+            ).toLocaleString()}</div>
           `;
 
           notesList.appendChild(noteDiv);
